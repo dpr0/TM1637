@@ -22,7 +22,7 @@ const codigitToSegment = [
     0b01011110, // d 0x5e
     0b01111001, // E 0x79
     0b01110001, // F 0x71
-    0b01000111  // '°'
+    0b01100011  // ° 0x63
 ];
 
 const ADDR_AUTO = 0x40; // 0b01000000
@@ -48,11 +48,11 @@ TM1637.prototype.startLoop = function () {
     if (act) {
         if (act[0] === "o") {
             act[1].mode('output');
-            // console.log("digitalWrite", act);
+            console.log("digitalWrite", act);
             digitalWrite(act[1], act[2]);
         } else if (act[0] === "i") {
             act[1].mode('input');
-            // console.log("digitalRead", act);
+            console.log("digitalRead", act);
             digitalRead(act[1], act[2]);
         }
     }
@@ -83,8 +83,7 @@ TM1637.prototype.read = function (pin) {
 
 // clock high in, high out
 TM1637.prototype.start = function () {
-    // pinDIO  high -> low when clock is high
-    this.low(this.pinDIO);
+    this.low(this.pinDIO); // pinDIO  high -> low when clock is high
 };
 
 // clock high in, high out
@@ -139,8 +138,7 @@ TM1637.prototype.show = function (str) {
         .split("")
         .reduce((acc, num) => {
             if (num === ".") {
-                // show point for previous number if needed
-                acc[acc.length - 1] |= 0b10000000;
+                acc[acc.length - 1] |= 0b10000000; // show point for previous number if needed
             } else {
                 acc.push(codigitToSegment[num] || 0);
             }
@@ -160,7 +158,7 @@ TM1637.prototype.show = function (str) {
     this.start(); // Display control
     this.writeByte(0b10001001); // Display control command set, on, brightness 111
     // this.writeByte(ADDR_BRIGHTNESS); // Display control command set, on, brightness 111
-    //this.writeByte(ADDR_BRIGHTNESS + ( (brightness & 0x70) | (on? 0x08 : 0x00)  )& 0x0f ); // brightness
+    // this.writeByte(ADDR_BRIGHTNESS + ( (brightness & 0x70) | (on? 0x08 : 0x00)  )& 0x0f ); // brightness
     this.stop();
 };
 
