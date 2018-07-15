@@ -1,8 +1,7 @@
 /**
  * Module for display TM1637 on Espruino(Iskra JS)
  * Control a 4 digit led segments TM1637 driver using javascript
- * @code https://github.com/xMlex/TM1637
- * Adaptation from https://github.com/revolunet/tm1637
+ * Adaptation from https://github.com/xMlex/TM1637
  */
 
 const codigitToSegment = [
@@ -22,7 +21,8 @@ const codigitToSegment = [
     0b00111001, // C 0x39
     0b01011110, // d 0x5e
     0b01111001, // E 0x79
-    0b01110001 // F 0x71
+    0b01110001, // F 0x71
+    0b01000111  // '°'
 ];
 
 const ADDR_AUTO = 0x40; // 0b01000000
