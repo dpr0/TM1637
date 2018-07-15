@@ -102,13 +102,10 @@ TM1637.prototype.readAck = function () {
     // Falling 8th
     this.low(this.pinClk);
     const readPro = this.read(this.pinDIO);
-
     // 9th rising edge
     this.high(this.pinClk);
-
     // Falling 9th
     this.low(this.pinClk);
-
     return readPro;
 };
 
