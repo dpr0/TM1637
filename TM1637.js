@@ -1,8 +1,5 @@
-/**
- * Module for display TM1637 on Espruino(Iskra JS)
- * Control a 4 digit led segments TM1637 driver using javascript
- * Adaptation from https://github.com/xMlex/TM1637
- */
+// TM1637 on Espruino(Iskra JS)
+// Adaptation from https://github.com/xMlex/TM1637
 
 const codigitToSegment = [
     // XGFEDCBA
@@ -61,9 +58,7 @@ TM1637.prototype.startLoop = function () {
 
 TM1637.prototype.enqueue = function (data) {
     this.q.push(data);
-    if (this.q.length === 1) {
-        this.startLoop();
-    }
+    if (this.q.length === 1) { this.startLoop(); }
 };
 
 TM1637.prototype.high = function (pin) {
@@ -86,15 +81,8 @@ TM1637.prototype.start = function () {
 
 // clock high in, high out
 TM1637.prototype.writeBit = function (value) {
-    // A rising edge
-    this.low(this.pinClk);
-    // change the value when clock is low
-    if (value) {
-        this.high(this.pinDIO);
-    } else {
-        this.low(this.pinDIO);
-    }
-
+    this.low(this.pinClk); // A rising edge
+    value ? this.high(this.pinDIO) : this.low(this.pinDIO); // change the value when clock is low
     this.high(this.pinClk);
 };
 
