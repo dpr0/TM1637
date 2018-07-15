@@ -51,7 +51,6 @@ TM1637.prototype.startLoop = function () {
             digitalWrite(act[1], act[2]);
         } else if (act[0] === "i") {
             act[1].mode('input');
-            console.log("digitalRead", act);
             digitalRead(act[1], act[2]);
         }
     }
