@@ -48,7 +48,6 @@ TM1637.prototype.startLoop = function () {
     if (act) {
         if (act[0] === "o") {
             act[1].mode('output');
-            console.log("digitalWrite", act);
             digitalWrite(act[1], act[2]);
         } else if (act[0] === "i") {
             act[1].mode('input');
